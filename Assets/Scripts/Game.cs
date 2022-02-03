@@ -1,37 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
-    private static int limitOfKilledFriends = 3;
-    private static int limitOfPassedEnemyes = 3;
-    public static int killedFriends;
-    public static int passedEnemyes;
-    
+    private int limitOfKilledFriends = 3;
+    private int limitOfPassedEnemyes = 3;
+    private int killedFriends;
+    private int passedEnemyes;
 
-  
+    public Image[] enemyImages = new Image[3];
+    public Image[] friendImages = new Image[3];
+
 
     private void Update()
     {
       
     }
 
-    public static void onFriendKilled()
+    public void onFriendKilled()
     {
         killedFriends++;
+        friendImages[killedFriends - 1].enabled = false;
+
         if (killedFriends == limitOfKilledFriends)
         {
             Debug.Log("Game over");
+            Time.timeScale = 0;
         }
     }
 
-    public static void onEnemyPassed()
+    public void onEnemyPassed()
     {
         passedEnemyes++;
+        enemyImages[passedEnemyes - 1].enabled = true;
         if (passedEnemyes == limitOfPassedEnemyes)
         {
             Debug.Log("Game over");
+            Time.timeScale = 0;
         }
     }
 
