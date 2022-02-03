@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BotGenerator : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
-    public GameObject FriendPrefab;
-
+    public GameObject[] EnemyPrefabs = new GameObject[3];
+    public GameObject[] FriendPrefabs = new GameObject[3];
     public float BotVelocity;
 
         private void Start()
@@ -21,10 +20,10 @@ public class BotGenerator : MonoBehaviour
 
         if (rnd == 1)
             {
-             bot = Instantiate(EnemyPrefab, transform.position - new Vector3(RandomiserOfPositon(), 0,0), Quaternion.identity);
+             bot = Instantiate(EnemyPrefabs[Random.Range(0,3)], transform.position - new Vector3(RandomiserOfPositon(), 0,0), Quaternion.identity);
             }
         else 
-             bot = Instantiate(FriendPrefab, transform.position - new Vector3(RandomiserOfPositon(), 0, 0), Quaternion.identity);
+             bot = Instantiate(FriendPrefabs[Random.Range(0, 3)], transform.position - new Vector3(RandomiserOfPositon(), 0, 0), Quaternion.identity);
 
         bot.GetComponent<Rigidbody>().velocity = -transform.forward * BotVelocity;
         }
