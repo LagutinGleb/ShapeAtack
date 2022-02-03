@@ -8,18 +8,14 @@ public class Game : MonoBehaviour
     private static int limitOfPassedEnemyes = 3;
     public static int killedFriends;
     public static int passedEnemyes;
+    
 
+  
 
     private void Update()
     {
-        //if (killedFriends == limitOfKilledFriends)
-        //{
-        //    Debug.Log("Game over");
-        //}
+      
     }
-
-
-
 
     public static void onFriendKilled()
     {
@@ -39,6 +35,11 @@ public class Game : MonoBehaviour
         }
     }
 
+
+    public static void TimeOff()
+    {
+        Debug.Log("Level Passed");
+    }
 
 
 }
