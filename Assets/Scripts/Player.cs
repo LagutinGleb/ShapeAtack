@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
-        
-   
+   //пока что просто, чтобы можно было опознать игрока
 }

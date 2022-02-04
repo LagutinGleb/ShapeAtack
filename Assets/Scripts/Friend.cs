@@ -8,17 +8,15 @@ public class Friend : MonoBehaviour
 
     private void Start()
     {
-            game = GameObject.Find("Game").GetComponent<Game>();
+            game = GameObject.Find("Game").GetComponent<Game>(); //на префаб нельзя повесить компонент GameObject со сцены, пришлось искать в ручную
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //если стрельнул в друга, дестроим оба объекта и засчитываем штраф
     {
         if (collision.collider.TryGetComponent(out Bullet bullet))
         {
             Destroy(gameObject);
             Destroy(bullet.gameObject);
-            //GameObject game = GameObject.Find("Game").GetComponent<Transform transform>();
-            //Game.onFriendKilled();
             game.onFriendKilled();
         }
     }
