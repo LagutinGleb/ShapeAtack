@@ -16,11 +16,6 @@ public class UI : MonoBehaviour
         fire.GetComponent<Fire>().enabled = true;
     }
 
-    public void ButtonExit()
-    {
-        Application.Quit();
-    }
-
     public void ButtonRestart()
     {
         SceneManager.LoadScene(0);

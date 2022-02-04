@@ -11,7 +11,7 @@ public class Friend : MonoBehaviour
             game = GameObject.Find("Game").GetComponent<Game>(); //на префаб нельзя повесить компонент GameObject со сцены, пришлось искать в ручную
     }
 
-    private void OnCollisionEnter(Collision collision) //если стрельнул в друга, дестроим оба объекта и засчитываем штраф
+    private void OnCollisionEnter(Collision collision) //если стрельнул в друга, дестроим оба объекта и говорим о случившемся Игре
     {
         if (collision.collider.TryGetComponent(out Bullet bullet))
         {

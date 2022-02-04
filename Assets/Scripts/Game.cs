@@ -21,17 +21,15 @@ public class Game : MonoBehaviour
     public GameObject UI;
     public Text TimerText;
     public Text SpeedX;
+    public Text reasonOfLoose;
 
     AudioSource sound;
     public AudioClip enemyPassed;
-    //public AudioClip enemyShooted;
 
     public static int levelCount;
     private Fire fireControl;
 
-
-
-    private void Start()
+    private void Start() // пока открыто начальное меню - фризим игру, отключаем контроль над оружием, устанавливаем данные об уровне
     {
         Time.timeScale = 0;
         levelNumber.text = "Level " + (levelCount + 1);
@@ -41,7 +39,7 @@ public class Game : MonoBehaviour
         sound = GetComponent<AudioSource>();
     }
 
-    void Update()
+    void Update() //обратный таймер, если время вышло -  уровень пройден
     {
         if (LevelTime > 0)
         {
@@ -52,7 +50,7 @@ public class Game : MonoBehaviour
         Win(); 
     }
 
-    public void onFriendKilled()
+    public void onFriendKilled() //действия, если попали в друга, 
     {
         killedFriends++;
         Debug.Log(killedFriends);
@@ -60,17 +58,23 @@ public class Game : MonoBehaviour
         sound.Play();
 
         if (killedFriends == limitOfKilledFriends)
-            Lose();
+        {
+            reasonOfLoose.text = "You killed 3 Friends :(";
+            Lose(); 
+        }
     }
 
-    public void onEnemyPassed()
+    public void onEnemyPassed() // действия, если пропустили врага
     {
         passedEnemyes++;
         enemyImages[passedEnemyes - 1].enabled = true;
         sound.PlayOneShot(enemyPassed);
 
         if (passedEnemyes == limitOfPassedEnemyes)
-            Lose();
+            {
+                reasonOfLoose.text = "3 enemies passed :(";
+                Lose(); 
+            }
     }
 
     private void Lose()
